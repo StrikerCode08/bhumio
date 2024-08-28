@@ -9,29 +9,24 @@ Bhumio Assignment task.
 $ cd server && npm install
 $ cd client && npm install
 ```
-
-## Compile and run the project
+## Compile and run Backend project
 
 ```bash
 # development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
+$ cd server && npm run start:dev
 
 # production mode
-$ npm run start:prod
+$ cd server && npm run start:prod
 ```
+### Env Setup 
+```bash
+$ cd client && touch .env
+```
+paste local dev url of nestjs server running as VITE_APP_URL
 
-## Run tests
+## Compile and run client project
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# development
+$ npm run dev
 ```
