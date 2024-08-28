@@ -1,19 +1,28 @@
 import React from "react";
 
-const LabelInput = ({ label, type, name, options = [], value, onChange }) => {
+const LabelInput = ({
+  id,
+  label,
+  type,
+  name,
+  options = [],
+  value,
+  handleChange,
+  answer
+}) => {
   return (
     <div className="labelcontainer">
       <label>{label}</label>
       {type !== "Text" ? (
         <div className="radio-group">
-          {options.map((option, index) => (
+          {options.map((option,index) => (
             <div key={index} className="radio-option">
               <input
                 type="radio"
-                name={name}
+                name={id}
                 value={option}
-                checked={value === option}
-                onChange={onChange}
+                checked={answer === option}
+                onChange={(e) => handleChange(id, e.target.value)}
                 className="radio-input"
               />
               <span className="radio-label">{option}</span>
@@ -21,7 +30,13 @@ const LabelInput = ({ label, type, name, options = [], value, onChange }) => {
           ))}
         </div>
       ) : (
-        <input type={type} name={name} value={value} onChange={onChange} />
+        <input
+          type="text"
+          name={id}
+          value={answer}
+          onChange={(e) => handleChange(id, e.target.value)}
+          className="text-input"
+        />
       )}
     </div>
   );

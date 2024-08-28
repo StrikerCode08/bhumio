@@ -10,12 +10,13 @@ import {
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Response } from 'express';
+import { v4 as uuidv4 } from 'uuid';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Post('create')
+  @Post('update')
   async createPdf(
     @Body() payload: any,
   ): Promise<{ message: string; fileName: string }> {
@@ -49,8 +50,10 @@ export class AppController {
         if (isQuestion) {
           if (currentQuestion) {
             questions.push({
+              id:uuidv4(),
               question: currentQuestion,
               options: options.length > 0 ? options : 'Text',
+              answer:""
             });
             options = [];
           }
@@ -67,8 +70,10 @@ export class AppController {
       // Push the last question into the array
       if (currentQuestion) {
         questions.push({
+          id:uuidv4(),
           question: currentQuestion,
           options: options.length > 0 ? options : 'Text',
+          answer:""
         });
       }
 
